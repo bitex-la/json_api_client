@@ -17,7 +17,12 @@ module JsonApiClient
         end
 
         def to_prefix_path(formatter)
-          "#{formatter.format(attr_name.to_s.pluralize)}/%{#{param}}"
+          path = if options[:polymorphic]
+            "%{#{options[:polymorphic]}}"
+          else
+            attr_name.to_s.pluralize
+          end
+          "#{path}/%{#{param}}"
         end
 
         def set_prefix_path(attrs, formatter)
