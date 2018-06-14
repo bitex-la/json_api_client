@@ -535,7 +535,7 @@ module JsonApiClient
     end
 
     def attributes_for_serialization
-      attributes.except(*non_serializing_attributes).slice(*changed)
+      attributes.slice(*changed)
     end
 
     def relationships_for_serialization
